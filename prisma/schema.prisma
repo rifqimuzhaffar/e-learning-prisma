@@ -1,0 +1,113 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Kelas {
+  id                Int                 @id @default(autoincrement())
+  nama_kelas        String
+  modePembelajaran  ModePembelajaran[]
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+}
+
+model ModePembelajaran {
+  id                Int                 @id @default(autoincrement())
+  nama_mode         String
+  id_kelas          Int
+  kelas             Kelas               @relation(fields: [id_kelas], references: [id])
+  mataPelajaran     MataPelajaran[]
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+}
+
+model MataPelajaran {
+  id                Int                 @id @default(autoincrement())
+  nama_pelajaran    String
+  img_thumbnail     String?
+  id_mode           Int
+  modePembelajaran  ModePembelajaran    @relation(fields: [id_mode], references: [id])
+  bab               Bab[]
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+}
+
+model Bab {
+  id                Int                 @id @default(autoincrement())
+  nama_bab          String
+  img_thumbnail     String?
+  id_pelajaran      Int
+  mataPelajaran     MataPelajaran       @relation(fields: [id_pelajaran], references: [id])
+  subbab            Subbab[]
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+}
+
+model Subbab {
+  id                Int                 @id @default(autoincrement())
+  nama_sub_bab      String
+  is_gratis         Boolean
+  img_thumbnail     String?
+  id_bab            Int
+  bab               Bab                 @relation(fields: [id_bab], references: [id])
+  material          Material[]
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+}
+
+model Material {
+  id                Int                 @id @default(autoincrement())
+  nama_material     String
+  img_thumbnail     String?
+  xp                Int
+  gold              Int
+  id_tipe_material  Int
+  id_sub_bab        Int
+  tipeMaterial      TipeMaterial        @relation(fields: [id_tipe_material], references: [id])
+  subbab            Subbab              @relation(fields: [id_sub_bab], references: [id])
+  userMaterials     UserMaterial[]
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+}
+
+model TipeMaterial {
+  id                Int                 @id @default(autoincrement())
+  jenis_material    String
+  material          Material[]
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+}
+
+model User {
+  id                Int                 @id @default(autoincrement())
+  nama_user         String
+  email             String              @unique
+  password          String
+  role              String              @default("regular")
+  userMaterials     UserMaterial[]
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+}
+
+model UserMaterial {
+  id                Int                 @id @default(autoincrement())
+  id_user           Int
+  id_material       Int
+  status            String
+  xp_earned         Int
+  gold_earned       Int
+  user              User                @relation(fields: [id_user], references: [id])
+  material          Material            @relation(fields: [id_material], references: [id])
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+}
