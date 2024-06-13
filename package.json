@@ -2,6 +2,9 @@
   "name": "e-learning-prismajs",
   "version": "1.0.0",
   "description": "learn prismajs",
+  "prisma": {
+    "seed": "node prisma/seeds/seed.js"
+  },
   "scripts": {
     "dev": "nodemon src/index.js  --watch src/ --watch package.json --watch .env",
     "start": "node src/index.js"
