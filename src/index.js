@@ -7,6 +7,7 @@ const kelasRouter = require("./routes/kelas.route");
 const mataPelajaranRouter = require("./routes/matapelajaran.route");
 const babRouter = require("./routes/bab.route");
 const subBabRouter = require("./routes/subbab.route");
+const materialRouter = require("./routes/material.route");
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use("/api/kelas", kelasRouter);
 app.use("/api/matapelajaran", mataPelajaranRouter);
 app.use("/api/bab", babRouter);
 app.use("/api/sub-bab", subBabRouter);
+app.use("/api/material", materialRouter);
 
 app.listen(process.env.SERVER_PORT || 5000, () => {
   console.log("Server Running in Port " + process.env.SERVER_PORT);
