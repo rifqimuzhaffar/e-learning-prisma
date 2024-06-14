@@ -5,6 +5,7 @@ const express = require("express");
 const authRouter = require("./routes/auth.route");
 const kelasRouter = require("./routes/kelas.route");
 const mataPelajaranRouter = require("./routes/matapelajaran.route");
+const babRouter = require("./routes/bab.route");
 
 const app = express();
 
@@ -21,6 +22,7 @@ if (!process.env.JWT_SECRET) {
 app.use("/api/auth", authRouter);
 app.use("/api/kelas", kelasRouter);
 app.use("/api/matapelajaran", mataPelajaranRouter);
+app.use("/api/bab", babRouter);
 
 app.listen(process.env.SERVER_PORT || 5000, () => {
   console.log("Server Running in Port " + process.env.SERVER_PORT);
