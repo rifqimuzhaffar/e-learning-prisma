@@ -93,7 +93,7 @@ model User {
   nama_user         String
   email             String              @unique
   password          String
-  role              String              @default("regular")
+  role              String              
   userMaterials     UserMaterial[]
   createdAt         DateTime            @default(now())
   updatedAt         DateTime            @updatedAt
