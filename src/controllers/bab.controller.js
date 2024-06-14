@@ -13,7 +13,7 @@ const index = async (req, res, next) => {
 
     const babs = await prisma.bab.findMany({
       where: {
-        id_pelajaran: Number(id_mata_pelajaran), // Pastikan id_pelajaran adalah angka
+        id_pelajaran: Number(id_mata_pelajaran),
       },
       include: {
         subbab: {
