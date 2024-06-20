@@ -72,13 +72,13 @@ const index = async (req, res, next) => {
         nama: subBab.nama_sub_bab,
         img_thumbnail: subBab.img_thumbnail,
         is_gratis: subBab.is_gratis,
-        progress: progress.toFixed(2),
+        progress: progress,
       };
     });
 
     return res.send({
       message: "success",
-      babProgress: babProgress.toFixed(2),
+      babProgress: babProgress,
       data: data,
     });
   } catch (error) {
