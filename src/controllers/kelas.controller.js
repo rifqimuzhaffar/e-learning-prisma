@@ -17,7 +17,7 @@ const index = async (req, res, next) => {
           nama: kelas.nama_kelas,
         },
         modePembelajarans: modePembelajarans.map((mode) => ({
-          id: mode.id_mode,
+          id: mode.id,
           nama: mode.nama_mode,
         })),
       });
