@@ -12,7 +12,6 @@ async function main() {
   await prisma.tipeMaterial.deleteMany({});
   await prisma.userMaterial.deleteMany({});
 
-  // Insert dummy data for Users
   await prisma.user.createMany({
     data: [
       {
@@ -42,7 +41,6 @@ async function main() {
     ],
   });
 
-  // Insert dummy data for Kelas
   await prisma.kelas.createMany({
     data: [
       { id: 1, nama_kelas: "Kelas 1" },
@@ -65,7 +63,6 @@ async function main() {
     ],
   });
 
-  // Insert dummy data for Mode Pembelajaran
   await prisma.modePembelajaran.createMany({
     data: [
       { id: 1, nama_mode: "Pembelajaran Tematik", id_kelas: 1 },
@@ -77,7 +74,6 @@ async function main() {
     ],
   });
 
-  // Insert dummy data for Mata Pelajaran
   await prisma.mataPelajaran.createMany({
     data: [
       {
@@ -113,7 +109,6 @@ async function main() {
     ],
   });
 
-  // Insert dummy data for Bab
   await prisma.bab.createMany({
     data: [
       {
@@ -179,7 +174,6 @@ async function main() {
     ],
   });
 
-  // Insert dummy data for SubBab
   await prisma.subbab.createMany({
     data: [
       {
@@ -213,7 +207,6 @@ async function main() {
     ],
   });
 
-  // Insert dummy data for TipeMaterial
   await prisma.tipeMaterial.createMany({
     data: [
       { id: 1, jenis_material: "Video" },
@@ -223,7 +216,6 @@ async function main() {
     ],
   });
 
-  // Insert dummy data for Material
   await prisma.material.createMany({
     data: [
       {
@@ -301,7 +293,6 @@ async function main() {
     ],
   });
 
-  // Insert dummy data for UserMaterial
   await prisma.userMaterial.createMany({
     data: [
       {
